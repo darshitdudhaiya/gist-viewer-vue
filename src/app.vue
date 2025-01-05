@@ -1,5 +1,6 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import GistViewer from "./components/GistViewer.vue";
+import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
@@ -12,6 +13,9 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <GistViewer
+    gistUrl="https://gist.github.com/darshitdudhaiya/daaa3154393f72d5b11a943538fd4684"
+  />
 </template>
 
 <style scoped>

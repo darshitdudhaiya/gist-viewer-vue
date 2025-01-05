@@ -1,7 +1,7 @@
-import GistView from "./components/GistViewer.vue";
+import GistViewer from "./components/GistViewer.vue";
 
 export default {
-  install: (app, config) => {
-    app.component("GistView", GistView);
+  install: (app) => {
+    app.component("GistViewer", GistViewer);
   },
 };
