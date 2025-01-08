@@ -3,6 +3,23 @@
 [![NPM Version](https://img.shields.io/npm/v/gist-viewer-vue.svg)](https://www.npmjs.com/package/gist-viewer-vue)  
 Easily embed and display GitHub Gists in your Vue applications with syntax highlighting, line numbers, and a responsive design.
 
+## 🗂 Table of Contents
+- [Features](#-features)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Usage](#-usage)
+  - [Global Registration](#1-global-registration)
+  - [Local Registration](#2-local-registration)
+- [Props](#-props)
+- [Example](#-example)
+- [Customization](#-customization)
+  - [Using Tailwind CSS](#using-tailwind-css)
+- [Development & Contribution](#-development--contribution)
+- [Contributing](#-contributing)
+  - [Steps to Contribute](#steps-to-contribute)
+  - [Guidelines](#guidelines)
+- [License](#-license)
+- [Support](#-support)
 
 
 ## 🚀 Features
@@ -157,6 +174,11 @@ We love contributions from the community! To contribute to this project, follow 
 ## 📝 License
 
 This project is licensed under the [MIT License](LICENSE).
+
+
+## 📞 Support
+
+If you need help or have any questions, please reach out via [LinkedIn](https://linkedin.com/in/darshitdudhaiya).
 
 ---
 
