@@ -29,7 +29,9 @@ Easily embed and display GitHub Gists in your Vue applications with syntax highl
 - **Customizable**: Built with Tailwind CSS, easy to style and customize.  
 - **TypeScript Support**: Fully typed and compatible with TypeScript.
 
-
+## 📋 Prerequisites
+- Node.js and npm installed on your machine.
+- Vue.js project setup.
 
 ## 📥 Installation
 
