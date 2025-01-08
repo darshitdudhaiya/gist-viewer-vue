@@ -26,6 +26,7 @@ or
 yarn add gist-viewer-vue
 ```
 
+
 ## 🛠️ Usage
 ### **1. Global Registration**
 
@@ -57,12 +58,15 @@ import GistViewer from "gist-viewer-vue";
 </template>
 ```
 
+
 ⚙️ Props
 ---
 
 | Props  | Type | Required | Default | Description |
 | ------- | ------ | ----------- | -------- | ------- |
 | `gistUrl` | `string` | ✅ | `null` | The URL of the GitHub Gist you want to display.
+
+
 
 
 ## 📚 Example
@@ -81,11 +85,13 @@ import GistViewer from "gist-viewer-vue";
 </script>
 ```
 
+
 ## 🎨 Customization
 
 ### **Using Tailwind CSS**
 
 This package uses Tailwind CSS for styling. You can customize the styles by modifying your Tailwind configuration or overriding the default styles.
+
 
 
 
@@ -105,6 +111,8 @@ We welcome contributions! Follow these steps to set up the package locally:
 	```bash
 	npm run dev
 	```
+
+
 ## 🤝 Contributing
 
 We love contributions from the community! To contribute to this project, follow these guidelines:
@@ -144,6 +152,7 @@ We love contributions from the community! To contribute to this project, follow 
 -   Add tests if you’re introducing new functionality.
 -   Make sure your changes don’t break existing features.
 -   Update documentation if necessary.
+
 
 ## 📝 License
 
