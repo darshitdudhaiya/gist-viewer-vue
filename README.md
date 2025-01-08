@@ -158,9 +158,6 @@ We love contributions from the community! To contribute to this project, follow 
 
 This project is licensed under the [MIT License](LICENSE).
 
+---
 
-
-## 👤 Author
-
-**Darshit Dudhaiya**  
 Made with ❤️ by Darshit Dudhaiya. Follow me on [LinkedIn](https://linkedin.com/in/darshitdudhaiya).
