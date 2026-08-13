@@ -1,13 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
   line-height: 1.5;
-  font-weight: 400;
-  color: #e6edf3;
-  background-color: #0d1117;
+  color: #1f2328;
+  background: #f6f8fa;
 }
 
 body {
@@ -17,7 +17,7 @@ body {
 }
 
 #app {
-  max-width: 1280px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem 1.25rem 4rem;
 }
