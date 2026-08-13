@@ -1,187 +1,105 @@
-# 📦 **Gist Viewer Vue**
+# gist-viewer-vue
 
-[![NPM Version](https://img.shields.io/npm/v/gist-viewer-vue.svg)](https://www.npmjs.com/package/gist-viewer-vue)  
-Easily embed and display GitHub Gists in your Vue applications with syntax highlighting, line numbers, and a responsive design.
+[![npm version](https://img.shields.io/npm/v/gist-viewer-vue.svg)](https://www.npmjs.com/package/gist-viewer-vue)
+[![CI](https://github.com/darshitdudhaiya/gist-viewer-vue/actions/workflows/ci.yml/badge.svg)](https://github.com/darshitdudhaiya/gist-viewer-vue/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/gist-viewer-vue.svg)](./LICENSE)
+[![downloads](https://img.shields.io/npm/dm/gist-viewer-vue.svg)](https://www.npmjs.com/package/gist-viewer-vue)
 
-## 🗂 Table of Contents
-- [Features](#-features)
-- [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
-- [Usage](#-usage)
-  - [Global Registration](#1-global-registration)
-  - [Local Registration](#2-local-registration)
-- [Props](#-props)
-- [Example](#-example)
-- [Customization](#-customization)
-  - [Using Tailwind CSS](#using-tailwind-css)
-- [Development & Contribution](#-development--contribution)
-- [Contributing](#-contributing)
-  - [Steps to Contribute](#steps-to-contribute)
-  - [Guidelines](#guidelines)
-- [License](#-license)
-- [Support](#-support)
+Vue 3 component for embedding GitHub Gists. It fetches gist files, highlights them, and ships its own styles so consumers do not need Tailwind.
 
+## Features
 
-## 🚀 Features
-- **Responsive Design**: Each file is scrollable horizontally for better readability.  
-- **Syntax Highlighting**: Beautiful syntax highlighting for all major programming languages.  
-- **Line Numbers**: Displays line numbers alongside your Gist content.  
-- **Customizable**: Built with Tailwind CSS, easy to style and customize.  
-- **TypeScript Support**: Fully typed and compatible with TypeScript.
+- Vue 3 (and Nuxt 3 / VitePress) compatible
+- Accepts a gist URL or raw gist id
+- Syntax highlighting with line numbers and copy
+- Optional single-file filter and GitHub token
+- Light, dark, and system themes
+- TypeScript types included
 
-## 📋 Prerequisites
-- Node.js and npm installed on your machine.
-- Vue.js project setup.
-
-## 📥 Installation
-
-Install the package via npm or yarn:
+## Install
 
 ```bash
 npm install gist-viewer-vue
 ```
-or
-```bash
-yarn add gist-viewer-vue
+
+Peer dependency: `vue` `^3.3.0`.
+
+## Usage
+
+Import the CSS once in your app entry:
+
+```ts
+import "gist-viewer-vue/style.css";
 ```
 
+### Local registration
 
-## 🛠️ Usage
-### **1. Global Registration**
+```vue
+<script setup lang="ts">
+import { GistViewer } from "gist-viewer-vue";
+</script>
 
-Register the package globally in your `main.ts` or `main.js` file:
-```JavaScript
+<template>
+  <GistViewer gist-url="https://gist.github.com/octocat/abc123" />
+</template>
+```
+
+A raw gist id also works:
+
+```vue
+<GistViewer gist-url="abc123" file="hello.ts" theme="dark" />
+```
+
+### Plugin registration
+
+```ts
 import { createApp } from "vue";
+import GistViewer from "gist-viewer-vue";
+import "gist-viewer-vue/style.css";
 import App from "./App.vue";
-import GistViewer from "gist-viewer-vue";
 
-const app = createApp(App);
-
-app.use(GistViewer); // Registers the plugin globally
-app.mount("#app");
-
-```
-You can now use the `<GistViewer>` component anywhere in your app.
-
-### **2. Local Registration**
-
-To use it in a specific component, import it locally:
-
-```HTML
-<script setup lang="ts">
-import GistViewer from "gist-viewer-vue";
-</script>
-
-<template>
-  <GistViewer gistUrl="https://gist.github.com/your-username/your-gist-id" />
-</template>
+createApp(App).use(GistViewer).mount("#app");
 ```
 
+### Nuxt 3
 
-⚙️ Props
----
+```ts
+// plugins/gist-viewer.ts
+import { GistViewer } from "gist-viewer-vue";
+import "gist-viewer-vue/style.css";
 
-| Props  | Type | Required | Default | Description |
-| ------- | ------ | ----------- | -------- | ------- |
-| `gistUrl` | `string` | ✅ | `null` | The URL of the GitHub Gist you want to display.
-
-
-
-
-## 📚 Example
-
-Here's an example of using the `GistViewer` component:
-```HTML
-<template>
-  <div>
-    <h1>My GitHub Gist</h1>
-    <GistViewer gistUrl="https://gist.github.com/your-username/your-gist-id" />
-  </div>
-</template>
-
-<script setup lang="ts">
-import GistViewer from "gist-viewer-vue";
-</script>
+export default defineNuxtPlugin((nuxtApp) => {
+  nuxtApp.vueApp.component("GistViewer", GistViewer);
+});
 ```
 
+## Props
 
-## 🎨 Customization
+| Prop              | Type                          | Default  | Description                                                                             |
+| ----------------- | ----------------------------- | -------- | --------------------------------------------------------------------------------------- |
+| `gistUrl`         | `string`                      | required | Gist URL or gist id                                                                     |
+| `file`            | `string`                      | —        | Show only this filename                                                                 |
+| `token`           | `string`                      | —        | GitHub token. Use this if you hit the unauthenticated API rate limit (60 requests/hour) |
+| `theme`           | `'light' \| 'dark' \| 'auto'` | `'auto'` | Color theme                                                                             |
+| `showLineNumbers` | `boolean`                     | `true`   | Render line numbers                                                                     |
+| `showFooter`      | `boolean`                     | `true`   | Show the raw-file footer                                                                |
+| `showAttribution` | `boolean`                     | `false`  | Show a small package credit in the footer                                               |
 
-### **Using Tailwind CSS**
+## GitHub rate limits
 
-This package uses Tailwind CSS for styling. You can customize the styles by modifying your Tailwind configuration or overriding the default styles.
+Unauthenticated calls to `api.github.com` are limited. For docs sites or pages that embed many gists, create a fine-grained token with public gist read access and pass it as `token`. Keep tokens on a server when you can; do not commit them.
 
+## Development
 
+```bash
+npm install
+npm run dev
+npm test
+npm run build
+```
 
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for PR guidelines.
 
-## 🧪 Development & Contribution
+## License
 
-We welcome contributions! Follow these steps to set up the package locally:
-
-- Clone the repository:
-	```bash
-	git clone https://github.com/darshitdudhaiya/gist-viewer-vue.git
-	```
-- Install dependencies:
-	```bash
-	npm install
-	```
-- Run the development server:
-	```bash
-	npm run dev
-	```
-
-
-## 🤝 Contributing
-
-We love contributions from the community! To contribute to this project, follow these guidelines:
-
-### Steps to Contribute
-
-1.  **Fork the Repository**: Click the "Fork" button on the repository page.
-
-2.  **Clone Your Fork**: Clone the repository to your local machine:
-    ```bash
-    git clone https://github.com/your-username/gist-viewer-vue.git
-    ```
-
-3. **Create a Branch**: Create a new branch for your feature or fix:
-	```bash
-	git checkout -b my-feature-branch
-	```
-
-4.   **Make Changes**: Implement your changes in the codebase.
-
-5.  **Commit Changes**: Commit your changes with a clear and concise message
-	```bash
-	git commit -m "Add feature: XYZ"
-	```
-
-6. **Push Changes**: Push your branch to your fork:
-	```bash
-	git push origin my-feature-branch
-	```	
-
-7.  **Submit a Pull Request**: Go to the original repository and open a Pull Request. Provide details about the changes you made.
-
-### Guidelines
-
--   Ensure your code follows the project's style and conventions.
--   Write clear commit messages.
--   Add tests if you’re introducing new functionality.
--   Make sure your changes don’t break existing features.
--   Update documentation if necessary.
-
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
-
-
-## 📞 Support
-
-If you need help or have any questions, please reach out via [LinkedIn](https://linkedin.com/in/darshitdudhaiya).
-
----
-
-Made with ❤️ by Darshit Dudhaiya. Follow me on [LinkedIn](https://linkedin.com/in/darshitdudhaiya).
+[MIT](./LICENSE)

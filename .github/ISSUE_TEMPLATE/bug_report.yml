@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a problem with gist-viewer-vue
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to report a bug.
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you expect, and what actually happened?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      placeholder: 1.2.0
+    validations:
+      required: true
+  - type: input
+    id: vue
+    attributes:
+      label: Vue version
+      placeholder: 3.5.13
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: A minimal snippet, gist URL, or repo helps a lot.
+    validations:
+      required: true
