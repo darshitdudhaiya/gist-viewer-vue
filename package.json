@@ -86,7 +86,7 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^9.9.0",
     "eslint-plugin-vue": "^9.32.0",
-    "globals": "^15.14.0",
+    "globals": "^17.9.0",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
