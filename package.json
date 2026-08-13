@@ -1,51 +1,101 @@
 {
   "name": "gist-viewer-vue",
-  "version": "1.1.0",
-  "description": "A simple Vue component to render GitHub Gist content by URL.",
-  "main": "./dist/gist-viewer-vue.umd.js",
-  "module": "./dist/gist-viewer-vue.es.js",
-  "types": "./gist-viewer-vue.d.ts",
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/gist-viewer-vue.es.js",
-      "require": "./dist/gist-viewer-vue.umd.js"
-    }
-  },
-  "keywords": [
-    "vue",
-    "gist",
-    "github",
-    "component",
-    "gist-viewer"
-  ],
+  "version": "1.2.0",
+  "description": "A Vue 3 component for embedding GitHub Gists with syntax highlighting, line numbers, and a copy button.",
   "license": "MIT",
   "author": {
     "name": "Darshit Dudhaiya",
-    "email": "darshitdudhaiya201@gmail.com"
+    "email": "darshitdudhaiya201@gmail.com",
+    "url": "https://github.com/darshitdudhaiya"
   },
+  "homepage": "https://github.com/darshitdudhaiya/gist-viewer-vue#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darshitdudhaiya/gist-viewer-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darshitdudhaiya/gist-viewer-vue/issues"
+  },
+  "type": "module",
+  "main": "./dist/gist-viewer-vue.umd.cjs",
+  "module": "./dist/gist-viewer-vue.js",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/gist-viewer-vue.js",
+      "require": "./dist/gist-viewer-vue.umd.cjs"
+    },
+    "./style.css": "./dist/gist-viewer-vue.css",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist",
-    "gist-viewer-vue.d.ts"
+    "types",
+    "LICENSE",
+    "README.md"
   ],
+  "keywords": [
+    "vue",
+    "vue3",
+    "gist",
+    "github",
+    "github-gist",
+    "embed",
+    "syntax-highlighting",
+    "code-block",
+    "component",
+    "nuxt",
+    "vitepress"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vite build --target lib --name gist-viewer-vue ./src/install.js"
-  },
-  "dependencies": {
-    "@nuxt/icon": "^1.10.3",
-    "prismjs": "^1.29.0",
-    "vue": "^3.0.0"
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^3.3.0"
+  },
+  "dependencies": {
+    "prismjs": "^1.29.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.1",
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^22.10.2",
     "@types/prismjs": "^1.26.3",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.20",
+    "eslint": "^9.9.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "globals": "^15.14.0",
+    "jsdom": "^25.0.1",
     "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
     "tailwindcss": "^3.4.17",
-    "vite": "^6.0.5"
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8",
+    "vue": "^3.5.13",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-tsc": "^2.2.0"
   }
 }

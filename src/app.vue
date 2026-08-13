@@ -1,24 +1,30 @@
-<script setup>
-import GistViewer from "./components/GistViewer.vue";
+<script setup lang="ts">
+import { GistViewer } from "./index";
 </script>
 
 <template>
-  <GistViewer
-    gistUrl="https://gist.github.com/darshitdudhaiya/daaa3154393f72d5b11a943538fd4684"
-  />
+  <main class="demo">
+    <h1>gist-viewer-vue</h1>
+    <p>Playground for the Vue 3 GitHub Gist component.</p>
+    <GistViewer
+      gist-url="https://gist.github.com/darshitdudhaiya/daaa3154393f72d5b11a943538fd4684"
+    />
+  </main>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.demo {
+  width: min(960px, 100%);
+  margin: 0 auto;
+  text-align: left;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+h1 {
+  margin: 0 0 0.35rem;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+p {
+  margin: 0 0 1.5rem;
+  color: #8b949e;
 }
 </style>

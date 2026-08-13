@@ -1,0 +1,275 @@
+.gvv {
+  --gvv-bg: #ffffff;
+  --gvv-surface: #f6f8fa;
+  --gvv-border: #d0d7de;
+  --gvv-text: #1f2328;
+  --gvv-muted: #656d76;
+  --gvv-accent: #0969da;
+  --gvv-error: #cf222e;
+  --gvv-shadow: 0 1px 3px rgba(31, 35, 40, 0.08);
+  --gvv-radius: 10px;
+  --gvv-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --gvv-token-comment: #6e7781;
+  --gvv-token-punctuation: #656d76;
+  --gvv-token-keyword: #cf222e;
+  --gvv-token-string: #0a3069;
+  --gvv-token-function: #8250df;
+  --gvv-token-number: #0550ae;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  color: var(--gvv-text);
+}
+
+.gvv[data-theme="dark"] {
+  --gvv-bg: #0d1117;
+  --gvv-surface: #161b22;
+  --gvv-border: #30363d;
+  --gvv-text: #e6edf3;
+  --gvv-muted: #8b949e;
+  --gvv-accent: #58a6ff;
+  --gvv-error: #f85149;
+  --gvv-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --gvv-token-comment: #8b949e;
+  --gvv-token-punctuation: #8b949e;
+  --gvv-token-keyword: #ff7b72;
+  --gvv-token-string: #a5d6ff;
+  --gvv-token-function: #d2a8ff;
+  --gvv-token-number: #79c0ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .gvv[data-theme="auto"] {
+    --gvv-bg: #0d1117;
+    --gvv-surface: #161b22;
+    --gvv-border: #30363d;
+    --gvv-text: #e6edf3;
+    --gvv-muted: #8b949e;
+    --gvv-accent: #58a6ff;
+    --gvv-error: #f85149;
+    --gvv-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    --gvv-token-comment: #8b949e;
+    --gvv-token-punctuation: #8b949e;
+    --gvv-token-keyword: #ff7b72;
+    --gvv-token-string: #a5d6ff;
+    --gvv-token-function: #d2a8ff;
+    --gvv-token-number: #79c0ff;
+  }
+}
+
+.gvv-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.gvv-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gvv-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.gvv-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--gvv-border);
+  border-top-color: var(--gvv-accent);
+  border-radius: 999px;
+  animation: gvv-spin 0.7s linear infinite;
+}
+
+.gvv-error {
+  color: var(--gvv-error);
+  background: color-mix(in srgb, var(--gvv-error) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gvv-error) 25%, transparent);
+  border-radius: var(--gvv-radius);
+  padding: 0.85rem 1rem;
+  font-size: 0.9rem;
+}
+
+.gvv-file {
+  background: var(--gvv-bg);
+  border: 1px solid var(--gvv-border);
+  border-radius: var(--gvv-radius);
+  box-shadow: var(--gvv-shadow);
+  overflow: hidden;
+}
+
+.gvv-header,
+.gvv-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--gvv-surface);
+  color: var(--gvv-muted);
+}
+
+.gvv-header {
+  border-bottom: 1px solid var(--gvv-border);
+}
+
+.gvv-footer {
+  border-top: 1px solid var(--gvv-border);
+  font-size: 0.75rem;
+}
+
+.gvv-filename {
+  font-family: var(--gvv-mono);
+  font-size: 0.85rem;
+  color: var(--gvv-text);
+  overflow-wrap: anywhere;
+}
+
+.gvv-language {
+  font-size: 0.75rem;
+}
+
+.gvv-body {
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+}
+
+.gvv-lines {
+  display: none;
+  flex-shrink: 0;
+  min-width: 3rem;
+  padding: 1rem 0.65rem;
+  border-right: 1px solid var(--gvv-border);
+  background: var(--gvv-surface);
+  color: var(--gvv-muted);
+  text-align: right;
+  user-select: none;
+  font-family: var(--gvv-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.gvv-code {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  flex: 1;
+  font-family: var(--gvv-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--gvv-text);
+}
+
+.gvv-code code {
+  font-family: inherit;
+  white-space: pre;
+}
+
+.gvv-link {
+  color: var(--gvv-accent);
+  text-decoration: none;
+}
+
+.gvv-link:hover,
+.gvv-link:focus-visible {
+  text-decoration: underline;
+}
+
+.gvv-copy {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--gvv-border);
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--gvv-bg) 88%, transparent);
+  color: var(--gvv-muted);
+  cursor: pointer;
+}
+
+.gvv-copy:hover,
+.gvv-copy:focus-visible {
+  color: var(--gvv-text);
+  outline: 2px solid var(--gvv-accent);
+  outline-offset: 1px;
+}
+
+.gvv-copy svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.gvv .token.comment,
+.gvv .token.prolog,
+.gvv .token.doctype,
+.gvv .token.cdata {
+  color: var(--gvv-token-comment);
+}
+
+.gvv .token.punctuation {
+  color: var(--gvv-token-punctuation);
+}
+
+.gvv .token.property,
+.gvv .token.tag,
+.gvv .token.boolean,
+.gvv .token.number,
+.gvv .token.constant,
+.gvv .token.symbol {
+  color: var(--gvv-token-number);
+}
+
+.gvv .token.selector,
+.gvv .token.attr-name,
+.gvv .token.string,
+.gvv .token.char,
+.gvv .token.builtin {
+  color: var(--gvv-token-string);
+}
+
+.gvv .token.operator,
+.gvv .token.entity,
+.gvv .token.url,
+.gvv .token.keyword {
+  color: var(--gvv-token-keyword);
+}
+
+.gvv .token.function,
+.gvv .token.class-name {
+  color: var(--gvv-token-function);
+}
+
+@keyframes gvv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 640px) {
+  .gvv-lines {
+    display: block;
+  }
+}
